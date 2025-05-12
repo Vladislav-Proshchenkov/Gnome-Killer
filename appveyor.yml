@@ -13,9 +13,11 @@ build_script:
   - yarn build
 
 on_success:
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_TOKEN):x-oauth-basic@github.com`n"
   - git config --global user.email "appveyor@example.com"
   - git config --global user.name "AppVeyor"
-  - yarn deploy
+  - ps: yarn deploy
 
 artifacts:
   - path: dist
