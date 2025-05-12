@@ -1,0 +1,22 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+environment:
+  nodejs_version: "18"
+  GITHUB_TOKEN:
+    secure: ${GITHUB_TOKEN}
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - yarn install
+
+build_script:
+  - yarn build
+
+on_success:
+  - git config --global user.email "appveyor@example.com"
+  - git config --global user.name "AppVeyor"
+  - yarn deploy
+
+artifacts:
+  - path: dist
+    name: distribution

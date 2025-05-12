@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  cursor: url('./assets/hammer.png') 35 35, auto;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 10px;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.cell {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.goblin {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: transform 0.2s;
+}
+
+.goblin:hover {
+  transform: scale(1.1);
+}
+
+.score {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.restart-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.restart-button:hover {
+  background-color: #45a049;
+}
