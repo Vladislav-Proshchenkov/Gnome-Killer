@@ -13,11 +13,14 @@ build_script:
   - yarn build
 
 on_success:
-  - git config --global credential.helper store
-  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_TOKEN):x-oauth-basic@github.com`n"
-  - git config --global user.email "appveyor@example.com"
-  - git config --global user.name "AppVeyor"
-  - ps: yarn deploy
+  - ps: |
+      git config --global user.email "appveyor@example.com"
+      git config --global user.name "AppVeyor CI"
+      cd dist
+      git init
+      git add .
+      git commit -m "Auto-deploy [skip ci]"
+      git push --force --quiet "https://$($env:GITHUB_TOKEN)@github.com/Vladislav-Proshchenkov/Gnome-Killer.git" master:gh-pages
 
 artifacts:
   - path: dist
